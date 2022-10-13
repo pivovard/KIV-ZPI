@@ -1,7 +1,7 @@
 from m5stack import *
 from m5stack_ui import *
 from uiflow import *
-from machine import Pin
+from machine import Pin, PWM, ADC, DAC
 
 
 screen = M5Screen()
@@ -10,6 +10,10 @@ screen.set_screen_bg_color(0x0)
 
 pinOUT = machine.Pin(27, machine.Pin.OUT)
 pinIN = machine.Pin(19, machine.Pin.IN, machine.Pin.PULL_UP)
+
+# pwm = PWM(Pin(27), freq=20000, duty=50)
+# dac = DAC(Pin(25))
+# dac.write(126)
 
 count = 0
 value = 1
