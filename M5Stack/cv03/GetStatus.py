@@ -11,12 +11,11 @@ screen.set_screen_bg_color(0x0)
 lBat = M5Label('Bat', x=250, y=15, color=0xFFFFFF, font=FONT_MONT_14, parent=None)
 lTime = M5Label('Time', x=15, y=15, color=0xFFFFFF, font=FONT_MONT_14, parent=None)
 lTouch = M5Label('X: 0, Y: 0', x=15, y=50, color=0xFFFFFF, font=FONT_MONT_14, parent=None)
-switch = M5Switch(x=15, y=85, w=70, h=30, bg_c=0xCCCCCC, color=0x0288FB, parent=None)
 
 rtc.settime('ntp', host='cn.pool.ntp.org', tzone=2)
 
 
-while(True):
+while(not btnC.wasPressed()):
   bat = map_value((power.getBatVoltage()), 3.7, 4.1, 0, 100)
   lBat.set_text("%d%%" % bat)
   

@@ -1,14 +1,7 @@
 from m5stack import lcd, btnC
 
-exit = False
-
-def pressed():
-    global exit
-    exit = True
-btnC.wasPressed(pressed)
-
-while(True):
-    if exit: break
+while(not btnC.wasPressed()):
+    lcd.print('Processing...', 0, 0)
     wait(1)
 
 lcd.clear()

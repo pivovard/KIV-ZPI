@@ -24,6 +24,6 @@ btn.pressed(pressed_cb)
 
 play()
 
-while(True):
+while(not btnC.wasPressed()):
   ch.set_checked(switch.get_state())
   wait(0.2)
