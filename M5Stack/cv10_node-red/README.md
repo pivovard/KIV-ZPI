@@ -1,32 +1,35 @@
 # Node-red
 
-ZCU cloud [](https://nuada.zcu.cz/) ([navod](https://support.zcu.cz/index.php/Cloudov%C3%A9_slu%C5%BEby))
+[ZCU cloud](https://nuada.zcu.cz/) - [navod](https://support.zcu.cz/index.php/Cloudov%C3%A9_slu%C5%BEby)
 
 
 ### Install on Linux
-```
-# Instal nodejs npm
 
+1. Instal nodejs npm
+```
 sudo apt update
 sudo apt install nodejs npm
 npm install -g n
 sudo n stable
-
-# Instal node-red
+```
+2. Instal node-red
+```
 sudo apt install node-red
-
-# Set port
-# Add line -A INPUT -p tcp --dport 1880 -j ACCEPT to /etc/iptables/rules.v4.local
+```
+3. Set port \
+add line `-A INPUT -p tcp --dport 1880 -j ACCEPT` to **/etc/iptables/rules.v4.local**
+```
 nano /etc/iptables/rules.v4.local
 sudo service iptables restart
-
-# Instal SmartNORA
+```
+4. Instal SmartNORA
+```
 cd ~/.node-red
 npm install node-red-contrib-smartnora
-
-# Run Node-red
+```
+5. Run Node-red
+```
 node-red
-
 ```
 
 ### Install on Windows
