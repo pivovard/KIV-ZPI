@@ -1,6 +1,6 @@
 {
   "cpu": {
-    "fqbn": "esp32:esp32:m5stack-core2:CPUFreq=240,DebugLevel=none,PSRAM=enabled,PartitionScheme=default,UploadSpeed=921600",
+    "fqbn": "esp32:esp32:m5stack-core2",
     "name": "M5Stack-Core2",
     "type": "serial"
   },

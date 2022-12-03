@@ -1,0 +1,1 @@
+docker run -d -p 8123:8123 --name homeassistant --privileged --restart=unless-stopped -e TZ=Europe/Prague -v "%HOMEDRIVE%%HOMEPATH%\HomeAssistant":/config ghcr.io/home-assistant/home-assistant:stable
