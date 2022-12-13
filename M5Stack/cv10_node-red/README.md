@@ -2,6 +2,10 @@
 
 https://nodered.org/
 
+### Smart nora
+
+https://smart-nora.eu/ - [docs](https://github.com/andrei-tatar/node-red-contrib-smartnora/tree/master/doc)
+
 ### ZCU cloud
 
 https://nuada.zcu.cz/ - [navod](https://support.zcu.cz/index.php/Cloudov%C3%A9_slu%C5%BEby)
@@ -55,7 +59,7 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 3. Add line `-A INPUT -p tcp --dport 80 -j ACCEPT` to **/etc/iptables/rules.v4.local**
 
 4. Run certbot
-- when certbot asks for a domain name enter your server host name (**sulisXX.zcu.cz)
+- when certbot asks for a domain name enter your server host name (**sulisXX.zcu.cz**)
 ```
 sudo certbot certonly --standalone
 ```
