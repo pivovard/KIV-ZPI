@@ -10,22 +10,22 @@ void setup() {
   M5.Lcd.begin(); 
   // initialize the pushbutton pin as an input:
   pinMode(buttonPin, INPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
   // read the state of the pushbutton value:
   int state = digitalRead(buttonPin);
     
-  if(buttonState != state && state == 1){
+  if(state == 1){
     count++;
   }
 
-  buttonState = state;
-
-  M5.Lcd.clear();
-  M5.Lcd.setCursor(0,0);
+  // M5.Lcd.clear();
+  // M5.Lcd.setCursor(0,0);
   // M5.Lcd.setCursorY(0);
-  M5.Lcd.print(state);
-  M5.Lcd.print(" ");
-  M5.Lcd.print(count);
+  // M5.Lcd.print();
+  Serial.print(state);
+  Serial.print(" ");
+  Serial.println(count);
 }
