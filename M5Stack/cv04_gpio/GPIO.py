@@ -1,36 +1,50 @@
 from m5stack import *
 from m5stack_ui import *
 from uiflow import *
-from machine import Pin, PWM, ADC, DAC
-
+from machine import Pin, DAC, PWM
 
 screen = M5Screen()
 screen.clean_screen()
-screen.set_screen_bg_color(0x0)
+screen.set_screen_bg_color(0xFFFFFF)
 
-pinOUT = machine.Pin(27, machine.Pin.OUT)
-pinIN = machine.Pin(19, machine.Pin.IN, machine.Pin.PULL_UP)
 
-# pwm = PWM(Pin(27), freq=20000, duty=50)
-# dac = DAC(Pin(25))
-# dac.write(126)
+led = machine.Pin(27, machine.Pin.OUT)
+btn = machine.Pin(19, machine.Pin.IN, machine.Pin.PULL_DOWN)
+
+led.value(1)
+
+dac = DAC(Pin(26))
+dac.write(180)
+
+pwm = PWM(Pin(27), freq=20000, duty=50) #freq=100 bude blikat
 
 count = 0
-value = 1
+val = 0
+i = 180
+j = 50
 
 while(not btnC.wasPressed()):
-  val = pinIN.value()
-  if val != value and val == 0:
+  if val != btn.value() and btn.value():
     count +=1
     
-  value = val
-  pinOUT.value(not val)
-  
   lcd.clear()
-  lcd.print('Pressed: %d' % int(not val),0,0)
-  lcd.print('Count: %d' % count,0,15)
+  lcd.print(count)
+  
+  val = btn.value()
+  led.value(not val)
+  
+  i+=10
+  if i > 255:
+    i = 180
+  dac.write(i)
+  
+  j+=5
+  if j > 100:
+    j = 50
+  pwm.duty(j)
   
   wait(0.2)
 
-lcd.clear()
-lcd.print('Finnished.',0,0)
+
+
+
