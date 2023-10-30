@@ -1,10 +1,13 @@
 from m5stack import *
 from m5ui import *
-import espnow
+import espnow, wifiCfg
 
 setScreenColor(0x000000)
 
-espnow.init(1)
+wifiCfg.wlan_ap.active(True)
+wifiCfg.wlan_sta.active(True)
+
+espnow.init(0)
 addr = espnow.get_mac_addr()
 
 espnow.add_peer('30aea4587df1', id=1)
@@ -27,8 +30,8 @@ def send_cb(flag):
 espnow.send_cb(send_cb)
 
 def buttonA_wasPressed():
-  espnow.send(id=1, data=str('Hello world!'))
+  espnow.send(id=1, data=str('Hello device!'))
   label.setText('sending')
 btnA.wasPressed(buttonA_wasPressed)
 
-
+espnow.broadcast(data='Hello World')
