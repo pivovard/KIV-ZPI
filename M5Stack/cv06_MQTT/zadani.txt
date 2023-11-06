@@ -1,0 +1,8 @@
+* 3 switche, které publikují stav "ON"/"OFF" na `device1/stat/switchN` (retain=true),
+  subscribují `device1/cmnd/switchN`, také "ON"/"OFF".
+* 1 LED `device1/cmnd/led1`.
+* btnA publikuje na `device/stat/switches` JSON se stavy switchů:
+  `{"switch1": true, "switch2": false, "switch3": true }` (bez retain)
+* LWT: `offline` na `device1/stat/availability` (retain)
+* Po připojení `online` na `device1/stat/availability` (retain)
+* btnB publikuje `{"event_type": "press"}` na `device1/stat/button1` (bez retain).

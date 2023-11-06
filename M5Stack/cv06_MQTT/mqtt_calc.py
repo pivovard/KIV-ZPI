@@ -1,33 +1,35 @@
 from m5stack import *
 from m5stack_ui import *
-from umqttsimple import MQTTClient
+import wifiCfg
+from m5mqtt import M5mqtt
 import ubinascii
 import machine
-import network
 import gc
 import random
 
-gc.collect()
+screen = M5Screen()
+screen.clean_screen()
+screen.set_screen_bg_color(0x222222)
+
 lcd.clear()
 
-ssid = 'ssid'
-password = 'pass'
+ssid = 'zpikiv'
+password = '78086975'
 
 mqtt_server = 'test.mosquitto.org'
 client_id = ubinascii.hexlify(machine.unique_id())
 
-station = network.WLAN(network.STA_IF)
-station.active(True)
-station.connect(ssid, password)
+wifiCfg.doConnect(ssid, password)
 
-while station.isconnected() == False:
-    pass
-
+while True:
+    if not (wifiCfg.wlan_sta.isconnected()):
+        print("try reconnect")
+        wifiCfg.reconnect()
 print('Connection successful')
-print(station.ifconfig())
+print(wifiCfg.wlan_sta.ifconfig())
 
-def sub_cb(topic, msg):
-    print((topic, msg))
+
+def sub_cb(msg):
     client.publish('zpi/res', msg)
 
     input = msg.split()
@@ -46,12 +48,11 @@ def sub_cb(topic, msg):
     client.publish('zpi/res', msg)
 
 def connect_and_subscribe():
-    global client_id, mqtt_server, topic_sub
-    client = MQTTClient(client_id, mqtt_server,1883)
-    client.set_callback(sub_cb)
-    client.connect()
-    client.subscribe('zpi/math')
-    print('Connected to %s MQTT broker, subscribed to %s topic' % (mqtt_server, topic_sub))
+    global client_id, mqtt_server
+    m5mqtt = M5mqtt(client_id, mqtt_server, 1883, '', '', 300)
+    client.subscribe('zpi/math', sub_cb)
+    client.start()
+    print('Connected to %s MQTT broker, subscribed to %s topic' % mqtt_server)
     client.publish('zpi/test', 'Connected...')
     return client
 
@@ -93,6 +94,3 @@ while True:
 
     counter += 1
     wait(5)
-
-# mosquitto_sub -t "zpi/res" -v -h test.mosquitto.org
-# mosquitto_pub -t 'test/topic' -m 'hello world' -h test.mosquitto.org

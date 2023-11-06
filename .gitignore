@@ -1,3 +1,9 @@
 M5Burner/
+UIFlow/
+M5Stack_*/
 CP210X_VCP_Windows/
 CH9102_VCP_SER_Windows.exe
+
+debug*
+esp32.svd
+.vscode
