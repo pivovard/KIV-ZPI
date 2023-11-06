@@ -19,19 +19,22 @@ void setup() {
   
   while(!WiFi.isConnected()){
     Serial.print(".");
+	delay(500)
   }
-    Serial.println("Wifi connected.");
+  Serial.println("Wifi connected.");
 
   client.begin("test.mosquitto.org", net);
   client.onMessage(messageReceived);
-  client.subscribe("/zpitest");
   client.setWill("/zpistatus", "offline");
   client.connect("M5ID");
 
   while(!client.connected()){
     Serial.print(".");
+	delay(500)
   }
-    Serial.println("MQTT connected.");
+  Serial.println("MQTT connected.");
+  
+  client.subscribe("/zpitest");
 }
 
 void loop() {
