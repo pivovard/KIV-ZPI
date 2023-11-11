@@ -20,16 +20,16 @@ client = MQTTClient("id", 'test.mosquitto.org')
 client.set_callback(sub_cb)
 client.set_last_will('zpistatus', 'offline')
 client.connect()
-c.subscribe("zpitest")
+client.subscribe("zpitest")
 client.publish('zpitest', 'Hello', retain=True)
 
 while True:
     if blocking_method:
-        c.wait_msg()
+        client.wait_msg()
     else:
-    c.check_msg()    
-    wait(2)
-m5mqtt.disconnect()
+        client.check_msg()    
+        wait(1)
+client.disconnect()
 
 # mosquitto_sub -t "zpitest" -v -h test.mosquitto.org
 # mosquitto_pub -t "zpitest" -m "hello" -h test.mosquitto.org -r
