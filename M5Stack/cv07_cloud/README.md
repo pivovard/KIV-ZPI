@@ -9,6 +9,7 @@ https://smart-nora.eu/ - [docs](https://github.com/andrei-tatar/node-red-contrib
 ### ZCU cloud
 
 https://nuada.zcu.cz/ - [navod](https://support.zcu.cz/index.php/Cloudov%C3%A9_slu%C5%BEby)
+- to ssh access add line `-A INPUT -p tcp --dport 22 -j ACCEPT` to **/etc/iptables/rules.v4.local**
 
 ### Install node-red on Linux
 
@@ -21,7 +22,7 @@ sudo n stable
 ```
 2. Instal node-red
 ```
-sudo apt install node-red
+sudo npm install -g node-red
 ```
 3. Set port
 - add line `-A INPUT -p tcp --dport 1880 -j ACCEPT` to **/etc/iptables/rules.v4.local**
@@ -29,7 +30,7 @@ sudo apt install node-red
 nano /etc/iptables/rules.v4.local
 sudo service iptables restart
 ```
-4. Instal SmartNORA
+4. Instal SmartNORA (optional)
 ```
 cd ~/.node-red
 npm install node-red-contrib-smartnora
