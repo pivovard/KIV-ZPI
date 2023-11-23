@@ -2,14 +2,12 @@
 
 https://nodered.org/
 
-### Smart nora
+### Run node-red in docker container
 
-https://smart-nora.eu/ - [docs](https://github.com/andrei-tatar/node-red-contrib-smartnora/tree/master/doc)
+`docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red`
 
-### ZCU cloud
-
-https://nuada.zcu.cz/ - [navod](https://support.zcu.cz/index.php/Cloudov%C3%A9_slu%C5%BEby)
-- to ssh access add line `-A INPUT -p tcp --dport 22 -j ACCEPT` to **/etc/iptables/rules.v4.local**
+Restart a stopped container:
+`docker start mynodered`
 
 ### Install node-red on Linux
 
@@ -30,17 +28,27 @@ sudo npm install -g node-red
 nano /etc/iptables/rules.v4.local
 sudo service iptables restart
 ```
-4. Instal SmartNORA (optional)
-```
-cd ~/.node-red
-npm install node-red-contrib-smartnora
-```
-5. Run Node-red
+4. Run Node-red
 ```
 node-red
 ```
 
-### Set https
+### Install additional nodes (optional)
+#### Dashboard
+[dashboard](https://flows.nodered.org/node/node-red-dashboard)
+```
+cd ~/.node-red
+npm install node-red-dashboard
+```
+#### Smart nora
+
+https://smart-nora.eu/ - [docs](https://github.com/andrei-tatar/node-red-contrib-smartnora/tree/master/doc)
+```
+cd ~/.node-red
+npm install node-red-contrib-smartnora
+```
+
+### Set https (optional)
 
 To access https page (properly) we need SSL certificate. In this case we'll require a certificate from [CA Let's encrypt](https://letsencrypt.org/) via sw [Certbot](https://certbot.eff.org/).
 
@@ -60,7 +68,7 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 3. Add line `-A INPUT -p tcp --dport 80 -j ACCEPT` to **/etc/iptables/rules.v4.local**
 
 4. Run certbot
-- when certbot asks for a domain name enter your server host name (**sulisXX.zcu.cz**)
+- when certbot asks for a domain name enter your server host name **sulis##.zcu.cz** (use your own domain instead of ##)
 ```
 sudo certbot certonly --standalone
 ```
@@ -72,8 +80,3 @@ https: {
     cert: require("fs").readFileSync('/etc/letsencrypt/live/sulisXX.zcu.cz/fullchain.pem')
 },
 ```
-
-### Install node-red on Windows
-
-1. Install [docker ](https://docs.docker.com/desktop/install/windows-install/)
-2. `docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red`
