@@ -3,7 +3,7 @@
 
 ## M5Stack dokumentace
 [Dokumentace microPython official](https://docs.m5stack.com/en/quick_start/core2/mpy) \
-[Dokumentace microPython Github](https://github.com/m5stack/M5Stack_MicroPython)
+[Dokumentace microPython Github](https://github.com/m5stack/M5Stack_MicroPython)      \
 [Dokumentace C (Arduino)](https://docs.m5stack.com/en/quick_start/core2/arduino)
 
 ## MQTT
@@ -18,8 +18,8 @@ https://nuada.zcu.cz/ - [navod](https://support.zcu.cz/index.php/Cloudov%C3%A9_s
 
 ### Docker
 
-[Windows](https://docs.docker.com/desktop/install/windows-install/) \
-[Linux](https://docs.docker.com/desktop/install/linux-install/)
+[Windows install](https://docs.docker.com/desktop/install/windows-install/) \
+[Linux install](https://docs.docker.com/desktop/install/linux-install/)
 
 ### Node-red
 
@@ -29,7 +29,9 @@ https://nuada.zcu.cz/ - [navod](https://support.zcu.cz/index.php/Cloudov%C3%A9_s
 
 [Home Assistant](https://www.home-assistant.io)
 
-`docker run -d -p 8123:8123 --name homeassistant --privileged --restart=unless-stopped -e TZ=Europe/Prague -v "%HOMEDRIVE%%HOMEPATH%\HomeAssistant":/config ghcr.io/home-assistant/home-assistant:stable``
+```
+docker run -d -p 8123:8123 --name homeassistant --privileged --restart=unless-stopped -e TZ=Europe/Prague -v "%HOMEDRIVE%%HOMEPATH%\HomeAssistant":/config ghcr.io/home-assistant/home-assistant:stable
+```
 
 ## M5Stack Emulator
 https://github.com/MartinUbl/M5Stack_MicroPython_Emulator/tree/master

@@ -4,10 +4,10 @@ https://nodered.org/
 
 ### Run node-red in docker container
 
-`docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red`
-
-Restart a stopped container:
-`docker start mynodered`
+```
+docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
+```
+Restart a stopped container: `docker start mynodered`
 
 ### Install node-red on Linux
 
