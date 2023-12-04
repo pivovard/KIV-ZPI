@@ -1,0 +1,375 @@
+[
+    {
+        "id": "925e85ee72a94aec",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8285a478713e9281",
+        "type": "mqtt in",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "topic": "/piv/zpi/in",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "9711cb06768d6811",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "9033b2d7e3578fa6",
+                "7c910c1bfce21064",
+                "9f534c40c3de9bc5"
+            ]
+        ]
+    },
+    {
+        "id": "9033b2d7e3578fa6",
+        "type": "debug",
+        "z": "925e85ee72a94aec",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "44f66818652b87cb",
+        "type": "mqtt out",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "topic": "/piv/zpi/out",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9711cb06768d6811",
+        "x": 510,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4426f46eeb6a70d5",
+        "type": "inject",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "Test",
+        "payloadType": "str",
+        "x": 230,
+        "y": 260,
+        "wires": [
+            [
+                "44f66818652b87cb"
+            ]
+        ]
+    },
+    {
+        "id": "e3bdd10884f70dec",
+        "type": "http in",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "url": "/zpi",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 380,
+        "wires": [
+            [
+                "1fc3070cb49019d5",
+                "049b33d863eca6cc"
+            ]
+        ]
+    },
+    {
+        "id": "86801ab2d6142f71",
+        "type": "http response",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "1fc3070cb49019d5",
+        "type": "debug",
+        "z": "925e85ee72a94aec",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "049b33d863eca6cc",
+        "type": "template",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h1>Hello world!</h1>\nData: {{flow.data}}.",
+        "output": "str",
+        "x": 460,
+        "y": 380,
+        "wires": [
+            [
+                "86801ab2d6142f71"
+            ]
+        ]
+    },
+    {
+        "id": "7c910c1bfce21064",
+        "type": "change",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "data",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9f534c40c3de9bc5",
+        "type": "ui_text",
+        "z": "925e85ee72a94aec",
+        "group": "e9e8c918bdb03f35",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Recv data",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 500,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a498154f2e72f615",
+        "type": "ui_button",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "group": "e9e8c918bdb03f35",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Send",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "Test btn",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "44f66818652b87cb"
+            ]
+        ]
+    },
+    {
+        "id": "76f6cd0ca5bc9a75",
+        "type": "ui_switch",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "group": "c1ea58a7e3399025",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 390,
+        "y": 500,
+        "wires": [
+            [
+                "696e90c86a9f1ef6"
+            ]
+        ]
+    },
+    {
+        "id": "3f1b1f6e8f18b345",
+        "type": "mqtt in",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "topic": "/piv/zpi/swin",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "9711cb06768d6811",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "76f6cd0ca5bc9a75",
+                "b8dc654e9ea0efc8"
+            ]
+        ]
+    },
+    {
+        "id": "696e90c86a9f1ef6",
+        "type": "mqtt out",
+        "z": "925e85ee72a94aec",
+        "name": "",
+        "topic": "/piv/zpi/swout",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9711cb06768d6811",
+        "x": 560,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "9711cb06768d6811",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e9e8c918bdb03f35",
+        "type": "ui_group",
+        "name": "mqtt",
+        "tab": "6de1a4aeceede418",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c1ea58a7e3399025",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "bd1ff9e77fc6177f",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6de1a4aeceede418",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "bd1ff9e77fc6177f",
+        "type": "ui_tab",
+        "name": "Switch",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
